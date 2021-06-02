@@ -19,7 +19,8 @@ pipeline {
                 //script {
                     //if (params.DKIM_Option.contains('Build')) {
                         sh "ls -al; pwd"
-                        sh "git tag -l | awk '{print $NF}'"
+                        sh "git tag -l | head -n 1 | tag=$(command-name-here)"
+                        sh "echo $tag"
                         //sh "docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:${params.tag} ."
                     //}
                     //if (params.DKIM_Option.contains('Push')) {
