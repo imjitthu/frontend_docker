@@ -14,7 +14,7 @@ pipeline {
 
     stages {
         
-        stage ('Build DKIM ${env.COMPONENT}') {
+        stage ('Build DKIM Frontend') {
             steps {
                 sh '''
                 tag=$(git tag -l | tail -n 1)
@@ -23,7 +23,7 @@ pipeline {
                 '''
             }
             }
-        stage ('Push DKIM ${env.COMPONENT}') {
+        stage ('Push DKIM Frontend') {
             steps {
                 sh '''
                 tag=$(git tag -l | tail -n 1)
