@@ -28,7 +28,7 @@ pipeline {
                 sh "docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PSW"
                 sh '''
                 tag=$(git tag -l | tail -n 1)
-                docker push ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag"
+                docker push ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag
                 '''
                 }
               }
