@@ -20,7 +20,7 @@ pipeline {
                     //if (params.DKIM_Option.contains('Build')) {
                         sh "docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:${params.tag} ."
                     //}
-                    ''if (params.DKIM_Option.contains('Push')) {
+                    //if (params.DKIM_Option.contains('Push')) {
                         sh "docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PSW"
                         sh "docker push ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:${params.tag}"
                     //}
