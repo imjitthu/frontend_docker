@@ -16,19 +16,10 @@ pipeline {
         
         stage ('Build DKIM ${env.COMPONENT}') {
             steps {
-                //script {
-                    //if (params.DKIM_Option.contains('Build')) {
-                        sh """
-                        tag=$(git tag -l | head -n 1)
-                        echo tag
-                        """
-                        //sh "docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:${params.tag} .
-                    //}
-                    //if (params.DKIM_Option.contains('Push')) {
-                        // sh "docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PSW"
-                        // sh "docker push ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:${params.tag}"
-                    //}
-                //}
+                sh """
+                tag=$(git tag -l | head -n 1)
+                echo tag
+                """
             }
             }
             }
