@@ -18,7 +18,6 @@ pipeline {
             steps {
                 sh '''
                 pwd
-                git pull
                 tag=$(git tag -l | tail -n 1)
                 echo $tag
                 '''
