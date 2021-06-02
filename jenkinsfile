@@ -18,7 +18,7 @@ pipeline {
             steps {
                 //script {
                     //if (params.DKIM_Option.contains('Build')) {
-                        sh "echo test"
+                        sh "ls -al; pwd"
                         sh "git tag -l"
                         //sh "docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:${params.tag} ."
                     //}
