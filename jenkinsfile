@@ -30,8 +30,8 @@ pipeline {
             }
     post {
         success {
-            sh "docker logout"
-            sh "docker rmi -f $(docker images -q)"
+            sh 'docker logout'
+            sh 'docker rmi -f $(docker images -q)'
             }
         always { 
             cleanWs()
