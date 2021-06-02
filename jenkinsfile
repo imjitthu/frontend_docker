@@ -17,11 +17,11 @@ pipeline {
         stage ('Build DKIM ${env.COMPONENT}') {
             steps {
                 sh '''
-                pwd
                 tag=$(git tag -l | tail -n 1)
                 echo $tag
+                docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag .
                 '''
-                sh 'docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag .'
+                //sh 'docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag .'
             }
             }
             }
