@@ -17,6 +17,7 @@ pipeline {
         stage ('Build DKIM ${env.COMPONENT}') {
             steps {
                 sh '''
+                git pull
                 tag=$(git tag -l | tail -n 1)
                 echo $tag
                 '''
