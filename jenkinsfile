@@ -26,6 +26,7 @@ pipeline {
         stage ('Push DKIM ${env.COMPONENT}') {
             steps {
                 sh '''
+                tag=$(git tag -l | tail -n 1)
                 docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PSW"
                 docker push ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag"
                 '''
