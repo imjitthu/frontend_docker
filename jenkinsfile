@@ -16,10 +16,10 @@ pipeline {
         
         stage ('Build DKIM ${env.COMPONENT}') {
             steps {
-                sh """
+                sh ''''
                 tag=$(git tag -l | tail -n 1)
                 echo $tag
-                """
+                '''
             }
             }
             }
