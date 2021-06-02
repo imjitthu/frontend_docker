@@ -18,10 +18,11 @@ pipeline {
             steps {
                 //script {
                     //if (params.DKIM_Option.contains('Build')) {
-                        sh "ls -al; pwd"
-                        sh "git tag -l | head -n 1 | tag=$(command-name-here)"
+                        sh """
+                        sh "tag=$(git tag -l | head -n 1)"
                         sh "echo $tag"
-                        //sh "docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:${params.tag} ."
+                        """
+                        //sh "docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:${params.tag} .
                     //}
                     //if (params.DKIM_Option.contains('Push')) {
                         // sh "docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PSW"
