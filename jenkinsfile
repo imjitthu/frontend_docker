@@ -20,8 +20,8 @@ pipeline {
                 pwd
                 tag=$(git tag -l | tail -n 1)
                 echo $tag
-                docker build -t ${env.DOCKERURL}/${env.DOCKERUSR}/${env.COMPONENT}:$tag .
                 '''
+                sh "docker build -t ${env.DOCKERURL}/${env.DOCKERUSR}/${env.COMPONENT}:$tag ."
             }
             }
             }
