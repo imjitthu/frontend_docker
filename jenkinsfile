@@ -21,7 +21,7 @@ pipeline {
                 tag=$(git tag -l | tail -n 1)
                 echo $tag
                 '''
-                sh "docker build -t ${env.DOCKERURL}/${env.DOCKERUSR}/${env.COMPONENT}:$tag ."
+                sh 'docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag .'
             }
             }
             }
