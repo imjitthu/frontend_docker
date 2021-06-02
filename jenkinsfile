@@ -21,9 +21,16 @@ pipeline {
                 echo $tag
                 docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag .
                 '''
-                //sh 'docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag .'
             }
             }
+        stage ('Push DKIM ${env.COMPONENT}') {
+            steps {
+                sh '''
+                docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PSW"
+                docker push ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag"
+                '''
+                }
+              }
             }
     post {
         success {
