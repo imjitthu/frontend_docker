@@ -30,4 +30,8 @@ pipeline {
             sh 'docker logout'
             }
         }
+    post { 
+        always { 
+            cleanWs()
+        }
         }
