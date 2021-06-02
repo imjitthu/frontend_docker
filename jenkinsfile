@@ -7,17 +7,12 @@ pipeline {
         COMPONENT = "frontend"
     }
 
-    // parameters {
-    // choice(name: 'DKIM_Option', choices: ['Build DKIM', 'Push DKIM',], description: 'Pick Docker Option')
-    // text(name: 'tag', defaultValue: '', description: 'Enter the DKIM tag number/name')
-    // }
-
     stages {
         
         stage ('Build DKIM Frontend') {
             steps {
                 sh '''
-                tag=$(git tag -l | tail -n 1)
+                tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
                 echo $tag
                 docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag .
                 '''
@@ -27,7 +22,7 @@ pipeline {
             steps {
                 sh "docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PSW"
                 sh '''
-                tag=$(git tag -l | tail -n 1)
+                tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
                 docker push ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag
                 '''
                 }
