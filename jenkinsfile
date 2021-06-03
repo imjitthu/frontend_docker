@@ -42,10 +42,8 @@ pipeline {
                 }
             }
     post {
+        when { triggeredBy 'github' }
         success {
-            when {
-                triggeredBy 'github'
-                 }
             sh 'docker logout'
             sh 'docker rmi -f $(docker images -q)'
             }
