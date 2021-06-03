@@ -11,7 +11,7 @@ pipeline {
         
         stage ('Build DKIM frontend') {
             when {
-                triggeredBy 'github2'
+                triggeredBy 'github'
                  }
             steps {
                 echo "triggered by GitHub"
@@ -23,7 +23,7 @@ pipeline {
                 }
         stage ('Push DKIM frontend') {
             when {
-                triggeredBy 'github2'
+                triggeredBy 'github'
                  }
             steps {
                 echo "triggered by GitHub"
