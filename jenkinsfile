@@ -14,13 +14,10 @@ pipeline {
                 triggeredBy 'github'
                  }
             steps {
-                echo "triggered by GitHub"
-                echo "${env.BUILD_USER}"
-                echo "${env.BUILD_USER_ID}"
-                // sh '''
-                // tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
-                // docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag .
-                // '''
+                sh '''
+                tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
+                docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag .
+                '''
                 }
                 }
         stage ('Push DKIM frontend') {
@@ -28,13 +25,12 @@ pipeline {
                 triggeredBy 'github'
                  }
             steps {
-                echo "triggered by GitHub"
-                // sh "docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PSW"
-                // sh '''
-                // tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
-                // docker push ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag
-                // docker rmi -f $(docker images -q)
-                // '''
+                sh "docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PSW"
+                sh '''
+                tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
+                docker push ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag
+                docker rmi -f $(docker images -q)
+                '''
                 }
               }
         stage ('Create POD with KubeCTL') {
