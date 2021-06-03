@@ -11,7 +11,7 @@ pipeline {
         
         stage ('Build DKIM frontend') {
             when {
-                triggeredBy 'Jithendar Dharmapuri'
+                triggeredBy 'github'
                  }
             steps {
                 sh '''
@@ -22,7 +22,7 @@ pipeline {
             }
         stage ('Push DKIM frontend') {
             when {
-                triggeredBy 'Jithendar Dharmapuri'
+                triggeredBy 'github'
                  }
             steps {
                 sh "docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PSW"
