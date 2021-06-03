@@ -10,6 +10,9 @@ pipeline {
     stages {
         
         stage ('Build DKIM frontend') {
+            when {
+                triggeredBy 'github'
+                 }
             steps {
                 sh '''
                 tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
@@ -18,6 +21,9 @@ pipeline {
             }
             }
         stage ('Push DKIM frontend') {
+            when {
+                triggeredBy 'github'
+                 }
             steps {
                 sh "docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PSW"
                 sh '''
