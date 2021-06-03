@@ -29,6 +29,8 @@ pipeline {
                 sh '''
                 tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
                 docker push ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag
+                docker logout
+                docker rmi -f $(docker images -q)
                 '''
                 }
               }
@@ -41,12 +43,8 @@ pipeline {
                 }
                 }
             }
-    when { triggeredBy 'github' }
+
     post {
-        success {
-            sh 'docker logout'
-            sh 'docker rmi -f $(docker images -q)'
-            }
         always { 
             cleanWs()
         }
