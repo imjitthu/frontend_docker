@@ -15,7 +15,7 @@ pipeline {
                  }
             steps {
                 echo "triggered by GitHub"
-                echo "${BUILD_USER}"
+                echo "${env.BUILD_USER}"
                 // sh '''
                 // tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
                 // docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag .
