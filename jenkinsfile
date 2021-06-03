@@ -37,7 +37,7 @@ pipeline {
               }
         stage ('Create POD with KubeCTL') {
             when {
-                expression {triggeredBy != 'github'}
+                expression {triggeredBy 'user'}
                  }
             steps {
                 echo "Creating POD with KubeCTL"
