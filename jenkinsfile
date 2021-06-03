@@ -39,7 +39,7 @@ pipeline {
               }
         stage ('Create POD with KubeCTL') {
             when {
-                triggeredBy 'jithendar'
+                triggeredBy 'MANUALTRIGGER'
                  }
             steps {
                 echo "Creating POD with KubeCTL"
