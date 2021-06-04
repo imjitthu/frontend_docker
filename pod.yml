@@ -33,6 +33,6 @@ spec:
     app: roboshop
   ports:
     - port: 80
-      name: TCP
+      name: tcp
       targetPort: 80
 
