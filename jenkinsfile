@@ -5,6 +5,7 @@ pipeline {
         DOCKERURL = "docker.io"
         DOCKERUSR = "jithendar"
         COMPONENT = "frontend"
+        USER      = "${BUILD_USER_ID}"
     }
 
     stages {
@@ -15,7 +16,7 @@ pipeline {
                  }
             steps {
                 sh '''
-                echo ${env.BUILD_USER_ID}
+                echo ${USER}
                 tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
                 docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag .
                 '''
