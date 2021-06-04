@@ -14,6 +14,8 @@ pipeline {
                 triggeredBy 'github'
                  }
             steps {
+                wrap([$class: 'BuildUser']) {
+                sh 'echo "${BUILD_USER}"'
                 sh '''
                 echo ${USER}
                 tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
