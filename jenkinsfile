@@ -42,6 +42,7 @@ pipeline {
                 //triggeredBy cause: "UserIdCause", detail: "jithendar"
                  }
             steps {
+                echo "${USER}"
                 echo "Creating POD with KubeCTL"
                 sh 'echo ${BUILD_USER_ID}'
                 }
