@@ -14,12 +14,19 @@ spec:
   template:
     metadata:
       labels:
-        app: frontend
+        app: nginx
         project: roboshop
     spec:
       containers:
       - name: frontend
         image: jithendar/fronetned:IMAGETAG
+        resources:
+        requests:
+          memory: "64Mi"
+          cpu: "250m"
+        limits:
+          memory: "64Mi"
+          cpu: "250m"
         ports:
         - containerPort: 80
 ---
@@ -31,7 +38,8 @@ spec:
   type: LoadBalancer
   selector: 
     app: nginx
-  ports: TCP
-  port: 80
-  targetPort: 80
+  ports:
+  - portocol: TCP 
+    port: 80
+    targetPort: 80
 
