@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: jithendar/fronetned:IMAGETAG
+        image: jithendar/frontned:IMAGETAG
         ports:
         - containerPort: 80
 ---
