@@ -41,10 +41,15 @@ pipeline {
               }
         stage ('Create POD with KubeCTL') {
             steps {
-                //wrap([$class: 'BuildUser']) {
-                echo "Creating POD with KubeCTL"
-                sh 'echo ${BUILD_USER_ID}'
-                //}
+                wrap([$class: 'BuildUser']) {
+                    if (BUILD_USER_ID == 'ScmChange'){
+                        echo "Creating POD with KubeCTL"
+                        sh 'echo ${BUILD_USER_ID}'
+                    }
+                    else {
+                        println "Trigger Job Manually to Create POD"
+                    }
+                }
             }
             }
             }
