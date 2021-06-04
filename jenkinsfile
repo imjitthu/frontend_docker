@@ -37,7 +37,7 @@ pipeline {
               }
         stage ('Create POD with KubeCTL') {
             when {
-                not triggeredBy 'github'
+                triggeredBy 'github'
                  }
             steps {
                 wrap([$class: 'BuildUser']) { //need to install build user vars plugin for Jenkins
