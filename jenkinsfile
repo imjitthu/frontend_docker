@@ -40,14 +40,7 @@ pipeline {
                 triggeredBy 'user'
                  }
             steps {
-                wrap([$class: 'BuildUser']) { //need to install build user vars plugin for Jenkins
-                    script {
-                    if (BUILD_USER_ID != 'scmChange'){
-                        sh 'kubectl apply -f pod.yml'
-                    }
-                    else {
-                        println "Trigger Job Manually to Create POD"
-                    }
+                sh 'kubectl apply -f pod.yml'
                 }
                 }
             }
