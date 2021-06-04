@@ -41,10 +41,10 @@ pipeline {
               }
         stage ('Create POD with KubeCTL') {
             steps {
-                wrap([$class: 'BuildUser']) {
+                //wrap([$class: 'BuildUser']) {
                 echo "Creating POD with KubeCTL"
                 sh 'echo ${BUILD_USER_ID}'
-                }
+                //}
             }
             }
             }
