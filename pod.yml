@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-deployment
+  name: frontend
   labels:
-    app: nginx
+    app: frontend
     project: roboshop
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: frontend
       project: roboshop
   template:
     metadata:
@@ -30,7 +30,7 @@ metadata:
 spec: 
   type: LoadBalancer
   selector: 
-    app: nginx
+    app: roboshop
   ports: TCP
   port: 80
   targetPort: 80
