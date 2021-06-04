@@ -40,18 +40,16 @@ pipeline {
                 }
               }
         stage ('Create POD with KubeCTL') {
-            wrap([$class: 'BuildUser']) {
             when {
                 expression {BUILD_USER_ID == 'ScmChange'}
                  }
             steps {
+                
                 echo "Creating POD with KubeCTL"
                 sh 'echo ${BUILD_USER_ID}'
                 }
-                }
             }
             }
-
     post {
         always { 
             cleanWs()
