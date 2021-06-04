@@ -5,7 +5,6 @@ pipeline {
         DOCKERURL = "docker.io"
         DOCKERUSR = "jithendar"
         COMPONENT = "frontend"
-        USER      = "${BUILD_USER_ID}"
     }
 
     stages {
@@ -38,11 +37,10 @@ pipeline {
               }
         stage ('Create POD with KubeCTL') {
             when {
-                triggeredBy cause: "UserCause", detail: "Jithendar Dharmapuri"
-                //triggeredBy cause: "UserIdCause", detail: "jithendar"
+                //triggeredBy cause: "UserCause", detail: "Jithendar Dharmapuri"
+                triggeredBy cause: "UserIdCause", detail: "jithendar"
                  }
             steps {
-                echo "${USER}"
                 echo "Creating POD with KubeCTL"
                 sh 'echo ${BUILD_USER_ID}'
                 }
