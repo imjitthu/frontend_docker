@@ -15,7 +15,7 @@ pipeline {
                  }
             steps {
                 sh '''
-                echo ${BUILD_USER_ID}
+                echo ${env.BUILD_USER_ID}
                 tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
                 docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag .
                 '''
