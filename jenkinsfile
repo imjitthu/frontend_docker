@@ -43,8 +43,6 @@ pipeline {
             wrap([$class: 'BuildUser']) {
             when {
                 expression {BUILD_USER_ID == 'ScmChange'}
-                //triggeredBy cause: "UserCause", detail: "Jithendar Dharmapuri"
-                //triggeredBy cause: "UserIdCause", detail: "jithendar"
                  }
             steps {
                 echo "Creating POD with KubeCTL"
