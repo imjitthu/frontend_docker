@@ -16,11 +16,11 @@ pipeline {
             steps {
                 wrap([$class: 'BuildUser']) {
                 sh 'echo "${BUILD_USER}"'
-                sh '''
-                echo ${USER}
-                tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
-                docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag .
-                '''
+                // sh '''
+                // echo ${USER}
+                // tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
+                // docker build -t ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag .
+                // '''
                 }
                 }
                 }
@@ -30,12 +30,12 @@ pipeline {
                  }
             steps {
                 sh "docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PSW"
-                sh '''
-                tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
-                docker push ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag
-                '''
-                sh 'docker logout'
-                sh 'docker rmi -f $(docker images -q)'
+                // sh '''
+                // tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
+                // docker push ${DOCKERURL}/${DOCKERUSR}/${COMPONENT}:$tag
+                // '''
+                // sh 'docker logout'
+                // sh 'docker rmi -f $(docker images -q)'
                 }
               }
         stage ('Create POD with KubeCTL') {
