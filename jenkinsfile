@@ -41,6 +41,7 @@ pipeline {
                  }
             steps {
                 echo "Creating POD with KubeCTL"
+                sh 'echo ${BUILD_USER}'
                 }
                 }
             }
