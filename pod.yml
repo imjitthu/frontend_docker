@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: jithendar/frontend:10.5
+          image: jithendar/frontend:image_tag
           ports:
             - containerPort: 80
 ---
