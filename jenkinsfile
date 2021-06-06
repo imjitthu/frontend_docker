@@ -39,20 +39,18 @@ pipeline {
                 triggeredBy cause: 'UpstreamCause', detail: 'K8s/eks_cluster'
                 triggeredBy 'user'
                 }
+                }
             steps {
                 sh '''
                 tag=$(git tag | xargs -I@ git log --format=format:"%ai @%n" -1 @ | sort -k2 | tail -n 1 | awk '{print $4}')
-                
                 kubectl apply -f pod.yml
                 '''
-                //sed -e 's/IMAGETAG/10.5/g' pod.yml
                 }
                 }
-            }
+                }
     post {
         always { 
             cleanWs()
         }
      }
-}
 }
