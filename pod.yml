@@ -4,11 +4,16 @@ metadata:
   name: frontend
   labels:
     app: frontend
-spec:
+sspec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      app: cart
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: rollingUpdate
   template:
     metadata:
       annotations:
