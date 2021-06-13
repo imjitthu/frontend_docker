@@ -8,7 +8,7 @@ sspec:
   replicas: 1
   selector:
     matchLabels:
-      app: cart
+      app: frontend
   strategy:
     rollingUpdate:
       maxSurge: 1
